@@ -1,0 +1,86 @@
+#include <iostream>
+#include<string>
+#include<Windows.h>
+#pragma warning(disable : 4996)
+
+using namespace std;
+void BaseTask()
+{
+    /*
+Введите массив символов из 15 элементов.Измените регистр символа: прописные заменить на строчные, а строчные на прописные. 
+ */
+    cout << "Base level task:\n";
+    char MasSymbols[16];
+    cout << "Enter 15 symbols]$~ ";
+    cin.getline(MasSymbols, 16);
+    MasSymbols[15] = '\0';
+    cout << MasSymbols << endl << endl;
+    for (size_t i = 0; MasSymbols[i]!='\0'; i++)
+    {
+        if ((MasSymbols[i] >= 65 && MasSymbols[i] <= 90 ) || (MasSymbols[i] >= 192 && MasSymbols[i] <= 223))
+            MasSymbols[i] = (char)(MasSymbols[i]+32) ;
+        else if ((MasSymbols[i] >= 97 && MasSymbols[i] <=  122 ) || (MasSymbols[i] >= 224 && MasSymbols[i] <= 255))
+            MasSymbols[i] = (char)(MasSymbols[i]-32);
+        if (MasSymbols[i] == ' ')
+            continue;
+    }
+    
+    cout << MasSymbols<<endl;
+}
+void ASCII()
+{
+    for (size_t i = 0; i <= 255; i++)
+    {
+        cout << i << "\t" << (char)i << endl;
+    }
+}
+void MidleTask()
+{
+    cout << "Midle task level: \n";
+    /*
+    Дан массив символов. Указать те слова, которые содержат хотя бы одну букву k. 
+    */
+    string str[] = { "Двачюю","KEK","Sup 2ch" };
+    char k;
+    cin >> k;
+    cout << str << endl;
+    for (size_t i = 0; i < str->length(); i++)
+    {
+        if (str[i].find_first_of(k))
+            cout << str[i]<<" ";
+    }
+}
+void HardTask(void)
+{
+    cout << "\nHard task level: \n";
+    /*
+    Введите массив символов из 16 элементов. Найти наибольшее целое число (без учета знака числа). 
+    */
+    const char* mas = "1csd4379\0";
+    //cin.getline(mas, 17);
+    //mas[16] = '\0';
+    int max = 0, temp = 0;
+    cout << "hz\n";
+    for (size_t i = 0; mas[i] != '\0' ; i++)
+    {
+        if (isdigit(mas[i]))
+        {
+            temp = atoi((const char*)mas[i]);
+            if (temp > max)
+                max = temp;
+        }
+    }
+   // cout << "Max element: " << max;
+}
+int main()
+{
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+    setlocale(LC_ALL, "");
+    BaseTask();
+    MidleTask();
+    HardTask();
+  //  ASCII();
+      system("pause");
+    return 0;
+}
